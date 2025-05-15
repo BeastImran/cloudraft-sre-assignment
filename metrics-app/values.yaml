@@ -27,7 +27,7 @@ securityContext:
   capabilities:
     drop:
     - ALL
-  readOnlyRootFilesystem: true
+  readOnlyRootFilesystem: false
   allowPrivilegeEscalation: false
   privileged: false
 
