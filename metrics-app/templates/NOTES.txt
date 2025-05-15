@@ -1,0 +1,30 @@
+Thank you for installing {{ .Chart.Name }}.
+
+Your release is named {{ .Release.Name }}.
+
+To learn more about the release, run:
+
+  $ helm status {{ .Release.Name }}
+  $ helm get all {{ .Release.Name }}
+
+The application has been deployed with the following security features:
+- Non-root user execution
+- Read-only filesystem
+- Dropped Linux capabilities
+- Resource limits and requests defined
+- Network policies to restrict traffic
+- Service exposed on port: {{ .Values.service.port }}
+- Application endpoint: {{ .Values.endpoint }}
+
+Gradual rollout policy has been configured with:
+- Rolling update strategy
+- Maximum surge: {{ .Values.rollout.strategy.rollingUpdate.maxSurge }}
+- Maximum unavailable: {{ .Values.rollout.strategy.rollingUpdate.maxUnavailable }}
+- Minimum ready seconds: {{ .Values.rollout.minReadySeconds }}
+
+For ArgoCD deployment:
+1. The password secret needs to be configured in ArgoCD
+2. Sync waves have been set for proper order of resource creation
+3. Health checks are configured via readiness and liveness probes
+
+NOTE: The MYPASSWORD secret needs to be properly configured in ArgoCD.

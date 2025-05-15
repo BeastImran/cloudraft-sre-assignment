@@ -1,7 +1,7 @@
 ### 🚀 SRE Assignment
 
 #### **Objective**
-Deploy a containerized app that exposes a `/counter` endpoint using Helm, ArgoCD, and KIND, and investigate any issues with the app behavior. 
+Deploy a containerized app that exposes a `/counter` endpoint using Helm, ArgoCD, and KIND, and investigate any issues with the app behavior.
 
 Correct Behaviour:
 ```
@@ -22,7 +22,7 @@ Counter value: 4
 - Create a Helm chart named `metrics-app`.
 - The Docker image is hosted at: `ghcr.io/cloudraftio/metrics-app:1.4`
 - It runs on port `8080` and exposes a `/counter` endpoint.
-- App needs a secret `PASSWORD` set to `MYPASSWORD`, available as an environment variable. Ensure it is securely passed. 
+- App needs a secret `PASSWORD` set to `MYPASSWORD`, available as an environment variable. Ensure it is securely passed.
 
 
 #### **2. Local KIND Cluster Setup**
@@ -45,7 +45,7 @@ Counter value: 4
   Validate the response by accessing the URL *multiple times*. What is the response to each call?
 ```bash
 for i in $(seq 0 20)
-do 
+do
 time curl localhost:8080/counter
 done
 ```
@@ -63,7 +63,7 @@ done
   - Git repository link with:
     - Helm chart
     - ArgoCD configuration (`Application` manifest, etc.)
-    - Ingress 
+    - Ingress
     - Any scripts/configs used to bootstrap the KIND + ArgoCD setup
   - Documentation
     - Deployment steps
@@ -71,6 +71,3 @@ done
     - Root cause analysis if you find an issue.
     - Screenshots/logs as evidence
 - **Bonus Points** for using best practices.
-
-
-

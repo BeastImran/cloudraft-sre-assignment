@@ -1,0 +1,12 @@
+fileignoreconfig:
+- filename: README.md
+  checksum: 9d7c42086cbc757b59fa4cf9875766cafac232927d81feea13bd50bdf482426d
+- filename: metrics-app/templates/ingress.yaml
+  checksum: f078f9a07c47d73f55322d41668de33c39ff1442932859591dff5668a06c130e
+- filename: metrics-app/templates/secret.yaml
+  checksum: 9f1515a1095957ab39fdb2cdabf06a0ed859d3759176bf1e17a2a5db1149350c
+- filename: values.yaml
+  checksum: ae132998fcf1dc945f474ce72cba8e18f281cd277a398de98dd157ef399da508
+- filename: metrics-app/templates/deployment.yaml
+  checksum: a0800ecd1110d55892c57f01f4e37abdd6427dcded1e347b02692dc47ad89dad
+version: "1.0"

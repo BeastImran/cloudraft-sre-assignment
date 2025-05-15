@@ -1,0 +1,48 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+  - id: trailing-whitespace
+  - id: end-of-file-fixer
+  - id: check-symlinks
+  - id: check-added-large-files
+    args: [ "--maxkb=5000" ]
+  - id: check-case-conflict
+  - id: check-json
+  - id: pretty-format-json
+    args: [ --autofix ]
+  - id: detect-aws-credentials
+    args: [ --allow-missing-credentials ]
+  - id: detect-private-key
+  - id: check-shebang-scripts-are-executable
+
+- repo: https://github.com/gitleaks/gitleaks
+  rev: 'v8.25.1'
+  hooks:
+  - id: gitleaks
+
+- repo: https://github.com/thoughtworks/talisman
+  rev: 'v1.36.0'
+  hooks:
+  - id: talisman-commit
+  - id: talisman-push
+
+- repo: local
+  hooks:
+  - id: local-biome-check
+    name: biome check
+    entry: biome check --files-ignore-unknown=true --no-errors-on-unmatched
+    language: system
+    types: [ text ]
+    files: "\\.(jsx?|tsx?|c(js|ts)|m(js|ts)|d\\.(ts|cts|mts)|svelte|vue|astro|graphql|gql)$"
+
+# - repo: local
+#   hooks:
+#   - id: trufflehog
+#     name: TruffleHog
+#     description: Detect secrets in your data.
+#     entry: bash -c 'trufflehog --no-update git file://. --since-commit HEAD --results=verified,unknown --fail'
+#     language: system
+#     stages: [ "pre-commit", "pre-push" ]
