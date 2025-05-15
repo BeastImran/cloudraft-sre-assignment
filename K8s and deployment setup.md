@@ -58,7 +58,7 @@ The deployment uses a controlled rolling update strategy with:
 
 1. **Container Hardening**:
    - Implement distroless base images
-   - Add runtime vulnerability scanning (Falco or similar)
+   - Add runtime vulnerability scanning (Falco)
    - Configure admission controllers (OPA/Gatekeeper)
 
 2. **RBAC Enhancement**:
@@ -68,6 +68,19 @@ The deployment uses a controlled rolling update strategy with:
 3. **Network Security**:
    - Implement mTLS with service mesh
    - Add egress filtering for all outbound traffic
+
+4. **Git Security**:
+   - Implemented pre-commit hooks for code quality and security:
+     ```yaml
+     # Key hooks configured:
+     - trailing-whitespace, end-of-file-fixer       # Code cleanliness
+     - detect-aws-credentials, detect-private-key   # Credential scanning
+     - gitleaks                                     # Secret detection
+     - talisman-commit, talisman-push, trufflehog   # Security scanning
+     - biome check                                  # Code formatting
+     ```
+   - Layered security approach prevents secrets and credentials from entering repository
+   - Automatic checks for large files, symlinks, and executable permissions
 
 ## 📈 Future Scalability Considerations
 
