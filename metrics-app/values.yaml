@@ -104,7 +104,7 @@ ingress:
   hosts:
   - host: localhost
     paths:
-    - path: /
+    - path: /counter
       pathType: Prefix
   tls: []
 
