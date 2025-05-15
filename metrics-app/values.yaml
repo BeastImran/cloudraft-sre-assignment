@@ -122,13 +122,13 @@ rollout:
   revisionHistoryLimit: 5
 
 # Resource limits and requests
-resources:
-  limits:
-    cpu: 500m
-    memory: 1Gi
-  requests:
-    cpu: 400m
-    memory: 512Mi
+# resources:
+#   limits:
+#     cpu: 500m
+#     memory: 1Gi
+#   requests:
+#     cpu: 400m
+#     memory: 512Mi
 
 # Autoscaling configuration
 autoscaling:
