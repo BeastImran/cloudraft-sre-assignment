@@ -5,7 +5,6 @@
 The `metrics-app` deployment leverages GitOps principles using ArgoCD for continuous delivery in a local Kind cluster. The application is containerized with security-hardened configurations and follows Kubernetes best practices.
 
 
-
 ## 🔧 Architecture Components
 
 - **Helm Chart**: Custom chart with proper templating for `metrics-app`
@@ -29,7 +28,7 @@ The `metrics-app` deployment leverages GitOps principles using ArgoCD for contin
 The deployment uses a controlled rolling update strategy with:
 - `maxSurge: 1` & `maxUnavailable: 0` for zero-downtime updates
 
-![Gradual rollout deployment strategy](/assets/images/App deployment Gradual Rollout.png)
+![Gradual rollout deployment strategy](/assets/images/App%20deployment%20Gradual%20Rollout.png)
 
 - `minReadySeconds: 30` to ensure stability before proceeding
 - Pod anti-affinity for high availability across nodes
@@ -48,7 +47,7 @@ The deployment uses a controlled rolling update strategy with:
    - Layered security approach prevents secrets and credentials from entering repository
    - Automatic checks for large files, symlinks, and executable permissions
 
-
+        ![Pre-commit git hooks in action](/assets/images/pre-commit%20git%20hooks%20running.png)
 
 ## 🚦 Monitoring & Observability
 
@@ -58,11 +57,13 @@ The deployment uses a controlled rolling update strategy with:
 - No distributed tracing for latency analysis
 - Absence of centralized logging
 
-### Proposed Enhancements
-
 1. **Metrics Stack**:
    - Deploy Prometheus + Grafana for resource monitoring
    - Create SLO/SLI dashboards with key metrics
+
+    ![Prometheus + Grafana monitoring](/assets/images/App%20Grafana%20monitoring.png)
+
+### Proposed Enhancements
 
 2. **Logging**:
    - Implement EFK/PLG stack for centralized logging
