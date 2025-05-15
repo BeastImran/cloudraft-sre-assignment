@@ -4,7 +4,14 @@
 
 During deployment of the application in a local Kind cluster with ArgoCD, the application exhibited abnormal memory consumption patterns. Investigation revealed a hidden intentional memory leak triggered by requests to the `/counter` endpoint.
 
-### 🕵️ Root Cause Analysis
+### Troubleshooting steps taken in short
+
+1. Noticed OOM killed application pods
+2. Observed initial memory usage of application as soon it starts from Grafana hinting me that `128Mi` memory limit should be fine.
+3. Noticed the OOM killed happening when hitting the `/counter` endpoint.
+4. exec'd into a application pod to read the application code and....... Jackpot! (Read the application code as it was a tiny app other wise would have looked into system processes and cron jobs, etc)
+
+### 🕵️ Root Cause Analysis / Troubleshooting result
 
 - Application contains a hidden memory leak mechanism inside `resources.dat`
 - The file is base64-encoded Python code
