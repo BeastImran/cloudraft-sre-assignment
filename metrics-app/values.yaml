@@ -83,7 +83,7 @@ probes:
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8080
   targetPort: 8080
 
 # Specify the endpoint to expose
@@ -102,14 +102,14 @@ ingress:
       more_set_headers "X-XSS-Protection: 1; mode=block";
       more_set_headers "Content-Security-Policy: default-src 'self'";
   hosts:
-  - host: metrics.example.com
+  - host: localhost
     paths:
     - path: /
       pathType: Prefix
   tls:
   - secretName: metrics-tls
     hosts:
-    - metrics.example.com
+    - localhost
 
 # Gradual rollout configuration
 rollout:
