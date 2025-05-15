@@ -83,7 +83,7 @@ probes:
 
 service:
   type: ClusterIP
-  port: 8080
+  port: 80
   targetPort: 8080
 
 # Specify the endpoint to expose
@@ -106,10 +106,7 @@ ingress:
     paths:
     - path: /
       pathType: Prefix
-  tls:
-  - secretName: metrics-tls
-    hosts:
-    - localhost
+  tls: []
 
 # Gradual rollout configuration
 rollout:
