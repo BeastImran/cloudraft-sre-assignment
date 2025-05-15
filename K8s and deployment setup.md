@@ -4,6 +4,8 @@
 
 The `metrics-app` deployment leverages GitOps principles using ArgoCD for continuous delivery in a local Kind cluster. The application is containerized with security-hardened configurations and follows Kubernetes best practices.
 
+
+
 ## 🔧 Architecture Components
 
 - **Helm Chart**: Custom chart with proper templating for `metrics-app`
@@ -26,15 +28,32 @@ The `metrics-app` deployment leverages GitOps principles using ArgoCD for contin
 
 The deployment uses a controlled rolling update strategy with:
 - `maxSurge: 1` & `maxUnavailable: 0` for zero-downtime updates
+
+![Gradual rollout deployment strategy](/assets/images/App deployment Gradual Rollout.png)
+
 - `minReadySeconds: 30` to ensure stability before proceeding
 - Pod anti-affinity for high availability across nodes
 - Graduated sync via ArgoCD sync-waves (-2 → 3)
+
+**Git Security**:
+   - Implemented pre-commit hooks for code quality and security:
+     ```yaml
+     # Key hooks configured:
+     - trailing-whitespace, end-of-file-fixer       # Code cleanliness
+     - detect-aws-credentials, detect-private-key   # Credential scanning
+     - gitleaks                                     # Secret detection
+     - talisman-commit, talisman-push, trufflehog   # Security scanning
+     - biome check                                  # Code formatting
+     ```
+   - Layered security approach prevents secrets and credentials from entering repository
+   - Automatic checks for large files, symlinks, and executable permissions
+
+
 
 ## 🚦 Monitoring & Observability
 
 ### Current Gaps
 
-- Lack of Prometheus integration for metrics collection
 - Missing alerts for memory/CPU threshold violations
 - No distributed tracing for latency analysis
 - Absence of centralized logging
@@ -68,19 +87,6 @@ The deployment uses a controlled rolling update strategy with:
 3. **Network Security**:
    - Implement mTLS with service mesh
    - Add egress filtering for all outbound traffic
-
-4. **Git Security**:
-   - Implemented pre-commit hooks for code quality and security:
-     ```yaml
-     # Key hooks configured:
-     - trailing-whitespace, end-of-file-fixer       # Code cleanliness
-     - detect-aws-credentials, detect-private-key   # Credential scanning
-     - gitleaks                                     # Secret detection
-     - talisman-commit, talisman-push, trufflehog   # Security scanning
-     - biome check                                  # Code formatting
-     ```
-   - Layered security approach prevents secrets and credentials from entering repository
-   - Automatic checks for large files, symlinks, and executable permissions
 
 ## 📈 Future Scalability Considerations
 
