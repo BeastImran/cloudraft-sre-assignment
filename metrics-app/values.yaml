@@ -60,7 +60,7 @@ secrets:
 # Configure probes
 probes:
   liveness:
-    path: /counter
+    path: /
     port: 8080
     initialDelaySeconds: 10
     periodSeconds: 10
@@ -68,7 +68,7 @@ probes:
     failureThreshold: 3
     successThreshold: 1
   readiness:
-    path: /counter
+    path: /
     port: 8080
     initialDelaySeconds: 5
     periodSeconds: 10
@@ -76,7 +76,7 @@ probes:
     failureThreshold: 3
     successThreshold: 1
   startup:
-    path: /counter
+    path: /
     port: 8080
     failureThreshold: 30
     periodSeconds: 10

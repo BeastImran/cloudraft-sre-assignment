@@ -1,5 +1,7 @@
 # Metrics-App Deployment in Kind Cluster with ArgoCD
 
+![Application running](/assets/images/app%20running.png "Application running. Output shows at root path /")
+
 ## 📋 Implementation Overview
 
 The `metrics-app` deployment leverages GitOps principles using ArgoCD for continuous delivery in a local Kind cluster. The application is containerized with security-hardened configurations and follows Kubernetes best practices.
