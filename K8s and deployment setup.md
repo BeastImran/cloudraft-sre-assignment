@@ -35,6 +35,7 @@ The deployment uses a controlled rolling update strategy with:
 - `minReadySeconds: 30` to ensure stability before proceeding
 - Pod anti-affinity for high availability across nodes
 - Graduated sync via ArgoCD sync-waves (-2 → 3)
+- Probes implemented (liveness, readiness and startup) pointed at path `/`
 
 **Git Security**:
    - Implemented pre-commit hooks for code quality and security:
