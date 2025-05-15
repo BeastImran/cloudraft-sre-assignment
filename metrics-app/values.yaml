@@ -104,9 +104,12 @@ ingress:
   hosts:
   - host: localhost
     paths:
-    - path: /counter
+    - path: /
       pathType: Prefix
-  tls: []
+  tls:
+  - secretName: metrics-tls
+    hosts:
+    - localhost
 
 # Gradual rollout configuration
 rollout:
